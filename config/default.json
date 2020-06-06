@@ -1,9 +1,11 @@
 {
     "port": 3001,
     "database":{
-        "host":"localhost",
+        "host":"cluster0-lqcr6.mongodb.net",
         "port":27017,
-        "dbname":"CustomerDB"
+        "dbname":"CustomerDB",
+        "user": "ucp_user",
+        "password":"KuEDidj9zkFTeC6c"
     },
     "secretkey-cryptojs":"ABDC@123!"
 }

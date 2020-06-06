@@ -5,8 +5,8 @@ const chalk = require("chalk");
 
 /** db connection info */
 const dbInfo = config.get("database");
-const connectionString = `mongodb://${dbInfo.host}:${dbInfo.port}/${dbInfo.dbname}`;
-
+//const connectionString = `mongodb://${dbInfo.host}:${dbInfo.port}/${dbInfo.dbname}`;
+const connectionString = `mongodb+srv://${dbInfo.user}:${dbInfo.password}@${dbInfo.host}/${dbInfo.dbname}?retryWrites=true&w=majority`
 /** messages color */
 const connectedColor = chalk.bold.green;
 const disconnectedColor = chalk.bold.cyan;

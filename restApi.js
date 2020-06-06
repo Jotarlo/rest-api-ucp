@@ -10,6 +10,12 @@ let app = express();
 app.use(bodyParserJSON);
 app.use(bodyParserUrlEncoded);
 
+const ipFn = require("./middleware/ip.client")
+app.use("*", ipFn);
+
+const sessionValidator = require("./middleware/session.verify");
+app.use(sessionValidator);
+
 /** REST api methods for customer */
 
 // welcome message

@@ -9,6 +9,7 @@ module.exports = (app) => {
 
     // GET
     app.get("/api/customer", (req, res, next) => {
+        console.log("getting all");
         controller.getAllCustomers(req, res, next);
     });
 
