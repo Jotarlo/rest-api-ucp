@@ -1,12 +1,9 @@
 /** packages */
-const bcrypt = require('bcrypt');
+const cryptojs = require("crypto-js");
+const config = require("config");
 
 exports.EncryptPassword = (plainTextPassword) => {
-    console.log(plainTextPassword);
-    const saltRounds = 10;
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-        bcrypt.hash(plainTextPassword, salt).then(function (hash){
-            
-        });
-    });
+    let secretKey = config.get("secretkey-cryptojs");
+    var newPassword = cryptojs.AES.encrypt(plainTextPassword, secretKey).toString();
+    return newPassword;
 }

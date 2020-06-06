@@ -11,7 +11,7 @@ db();
 customerSchema.statics = {
     create: function (data, cb) {
         let customer = new this(data);
-        customer.save();
+        customer.save(cb);
     },
     getAll: function (query, cb) {
         this.find(query, cb);

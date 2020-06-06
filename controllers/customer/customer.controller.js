@@ -13,7 +13,7 @@ exports.createCustomer = (req, res, next) => {
         email: req.body.email,
         birthdate: req.body.birthdate,
         credit: req.body.credit,
-        password: req.body.password
+        password: helper.EncryptPassword(req.body.password)
     };
 
     console.log("------------------------");
@@ -21,12 +21,12 @@ exports.createCustomer = (req, res, next) => {
     console.log("------------------------");
     DTO.create(customer, (err, data) => {
         if (err) {
-            res.json({
+            return res.status(400).json({
                 message: "KO",
                 error: err
             });
         }
-        res.json({
+        res.status(201).json({
             message: "OK",
             data: data
         });
@@ -37,7 +37,7 @@ exports.createCustomer = (req, res, next) => {
 exports.getAllCustomers = (req, res, next) => {
     DTO.getAll({}, (err, data) => {
         if (err) {
-            res.json({
+            res.status(400).json({
                 message: "KO",
                 error: err
             });
@@ -54,12 +54,12 @@ exports.getAllCustomers = (req, res, next) => {
 exports.getCustomerByDocument = (req, res, next) => {
     DTO.getByDocument({ document: req.params.document }, (err, data) => {
         if (err) {
-            res.json({
+            return res.status(400).json({
                 message: "KO",
                 error: err
             });
         }
-        res.json({
+        res.status(200).json({
             message: "OK",
             data: data
         });
@@ -80,12 +80,12 @@ exports.updateCustomer = (req, res, next) => {
 
     DTO.update({ _id: req.body.id }, customer, (err, data) => {
         if (err) {
-            res.json({
+            return res.status(400).json({
                 message: "KO",
                 error: err
             });
         }
-        res.json({
+        res.status(201).json({
             message: "OK",
             data: data
         });
@@ -96,12 +96,12 @@ exports.updateCustomer = (req, res, next) => {
 exports.removeCustomer = (req, res, next) => {
     DTO.delete({ _id: req.body.id }, (err, data) => {
         if (err) {
-            res.json({
+            return res.status(400).json({
                 message: "KO",
                 error: err
             });
         }
-        res.json({
+        res.status(204).json({
             message: "OK"
         });
     });
